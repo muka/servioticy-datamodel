@@ -29,13 +29,15 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @JsonSubTypes({
 	@JsonSubTypes.Type(value=SOSubscription.class, name=Subscription.SUBS_SO),
     @JsonSubTypes.Type(value=ExternalSubscription.class, name=Subscription.SUBS_EXTERNAL),
-	@JsonSubTypes.Type(value=InternalSubscription.class, name=Subscription.SUBS_INTERNAL)
+	@JsonSubTypes.Type(value=InternalSubscription.class, name=Subscription.SUBS_INTERNAL),
+    @JsonSubTypes.Type(value=AggregateSubscription.class, name=Subscription.SUBS_AGGREGATE)
 })
 public class Subscription{
 	@JsonIgnore static final public String SUBS_SO = "internal";
 	@JsonIgnore static final public String SUBS_EXTERNAL = "pubsub";
 	@JsonIgnore static final public String SUBS_INTERNAL = "service";
-	
+    @JsonIgnore static final public String SUBS_AGGREGATE= "aggregate";
+
 	private String callback; // Kind of subscription
 	private String id;
 //	private Long delay; // Not used
